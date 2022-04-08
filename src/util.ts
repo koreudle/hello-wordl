@@ -25,7 +25,8 @@ export function urlParam(name: string): string | null {
 }
 
 export const seed = Number(urlParam("seed"));
-const makeRandom = () => (seed ? mulberry32(seed) : () => Math.random());
+//const makeRandom = () => (seed ? mulberry32(seed) : () => Math.random());
+const makeRandom = () => mulberry32(seed);
 let random = makeRandom();
 
 export function resetRng(): void {
