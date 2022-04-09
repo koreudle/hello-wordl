@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/koreudle/static/css/main.3ba1d3fa.css",
-    "main.js": "/koreudle/static/js/main.0cb5ad39.js",
+    "main.js": "/koreudle/static/js/main.80a4d04e.js",
     "index.html": "/koreudle/index.html",
     "main.3ba1d3fa.css.map": "/koreudle/static/css/main.3ba1d3fa.css.map",
-    "main.0cb5ad39.js.map": "/koreudle/static/js/main.0cb5ad39.js.map"
+    "main.80a4d04e.js.map": "/koreudle/static/js/main.80a4d04e.js.map"
   },
   "entrypoints": [
     "static/css/main.3ba1d3fa.css",
-    "static/js/main.0cb5ad39.js"
+    "static/js/main.80a4d04e.js"
   ]
 }
