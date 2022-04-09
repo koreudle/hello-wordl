@@ -87,8 +87,8 @@ function App() {
           link("❌", "Close", "game")
         ) : (
           <>
-            {link("❓", "About", "about")}
-            {link("⚙️", "Settings", "settings")}
+            {link("❓", "À propos", "about")}
+            {link("⚙️", "Paramètres", "settings")}
           </>
         )}
       </div>
@@ -111,7 +111,7 @@ function App() {
               checked={dark}
               onChange={() => setDark((x: boolean) => !x)}
             />
-            <label htmlFor="dark-setting">Dark theme</label>
+            <label htmlFor="dark-setting">Thème sombre</label>
           </div>
           <div className="Settings-setting">
             <input
@@ -120,10 +120,10 @@ function App() {
               checked={colorBlind}
               onChange={() => setColorBlind((x: boolean) => !x)}
             />
-            <label htmlFor="colorblind-setting">High-contrast colors</label>
+            <label htmlFor="colorblind-setting">Contraste élevé</label>
           </div>
           <div className="Settings-setting">
-            <label htmlFor="keyboard-setting">Keyboard layout:</label>
+            <label htmlFor="keyboard-setting">Disposition du clavier :</label>
             <select
               name="keyboard-setting"
               id="keyboard-setting"
@@ -143,7 +143,7 @@ function App() {
               checked={enterLeft}
               onChange={() => setEnterLeft((x: boolean) => !x)}
             />
-            <label htmlFor="enter-left-setting">"Enter" on left side</label>
+            <label htmlFor="enter-left-setting">"Entrée" à gauche</label>
           </div>
         </div>
       )}

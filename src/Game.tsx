@@ -185,11 +185,11 @@ function Game(props: GameProps) {
       setHint("");
     } else if (key === "Enter") {
       if (currentGuess.length !== wordLength) {
-        setHint("Too short");
+        setHint("Trop court");
         return;
       }
       if (!dictionary.includes(currentGuess)) {
-        setHint("Not a valid word");
+        setHint("Mot invalide");
         return;
       }
       for (const g of guesses) {
@@ -204,15 +204,13 @@ function Game(props: GameProps) {
       setCurrentGuess((guess) => "");
 
       const gameOver = (verbed: string) =>
-        `You ${verbed}! The answer was ${target.toUpperCase()}. (Enter to ${
-          challenge ? "play a random game" : "play again"
-        })`;
+        `Vous avez ${verbed} ! La réponse était ${target.toUpperCase()}.`;
 
       if (currentGuess === target) {
-        setHint(gameOver("won"));
+        setHint(gameOver("gagné"));
         setGameState(GameState.Won);
       } else if (guesses.length + 1 === props.maxGuesses) {
-        setHint(gameOver("lost"));
+        setHint(gameOver("perdu"));
         setGameState(GameState.Lost);
       } else {
         setHint("");
@@ -276,13 +274,13 @@ function Game(props: GameProps) {
           disabled={gameState !== GameState.Playing || guesses.length === 0}
           onClick={() => {
             setHint(
-              `The answer was ${target.toUpperCase()}. (Enter to play again)`
+              `La réponse était ${target.toUpperCase()}.`
             );
             setGameState(GameState.Lost);
             (document.activeElement as HTMLElement)?.blur();
           }}
         >
-          Give up
+          Abandonner
         </button>
       </div>
       <table
@@ -307,45 +305,6 @@ function Game(props: GameProps) {
         letterInfo={letterInfo}
         onKey={onKey}
       />
-      <div className="Game-seed-info">
-        {challenge
-          ? "playing a challenge game"
-          : seed
-          ? `${describeSeed(seed)} — length ${wordLength}, game ${gameNumber}`
-          : "playing a random game"}
-      </div>
-      <p>
-        <button
-          onClick={() => {
-            share("Link copied to clipboard!");
-          }}
-        >
-          Share a link to this game
-        </button>{" "}
-        {gameState !== GameState.Playing && (
-          <button
-            onClick={() => {
-              const emoji = props.colorBlind
-                ? ["⬛", "🟦", "🟧"]
-                : ["⬛", "🟨", "🟩"];
-              const score = gameState === GameState.Lost ? "X" : guesses.length;
-              share(
-                "Result copied to clipboard!",
-                `${gameName} ${score}/${props.maxGuesses}\n` +
-                  guesses
-                    .map((guess) =>
-                      clue(guess, target)
-                        .map((c) => emoji[c.clue ?? 0])
-                        .join("")
-                    )
-                    .join("\n")
-              );
-            }}
-          >
-            Share emoji results
-          </button>
-        )}
-      </p>
     </div>
   );
 }
