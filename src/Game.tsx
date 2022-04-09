@@ -167,12 +167,12 @@ function Game(props: GameProps) {
   }
 
   const onKey = (key: string) => {
-    //if (gameState !== GameState.Playing) {
-    //  if (key === "Enter") {
-    //    startNextGame();
-    //  }
-    //  return;
-    //}
+    if (gameState !== GameState.Playing) {
+      if (key === "Enter") {
+        setHint("Rendez-vous demain pour un nouveau mot !");
+      }
+      return;
+    }
     if (guesses.length === props.maxGuesses) return;
     if (/^[a-z]$/i.test(key)) {
       setCurrentGuess((guess) =>
