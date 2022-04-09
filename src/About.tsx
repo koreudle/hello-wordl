@@ -6,17 +6,16 @@ export function About() {
   return (
     <div className="App-about">
       <p>
-        <i>{gameName}</i> is a remake of the word game{" "}
-        <a href="https://www.powerlanguage.co.uk/wordle/">
-          <i>Wordle</i>
+        <i>{gameName}</i> est un jeu basé sur{" "}
+        <a href="https://github.com/lynn/hello-wordl">
+          <i>hello wordl</i>
         </a>{" "}
-        by <a href="https://twitter.com/powerlanguish">powerlanguage</a>, which
-        I think is based on the TV show <i>Lingo</i>.
+        adapté à l'univers du site koreus.com.
       </p>
       <p>
-        You get {maxGuesses} tries to guess a target word.
+        Vous avez {maxGuesses} essais pour deviner un mot lié à l'univers de Koreus.com.
         <br />
-        After each guess, you get Mastermind-style feedback.
+        Après chaque essai, vous obtenez une réponse de type 'Mastermind'.
       </p>
       <hr />
       <Row
@@ -30,23 +29,22 @@ export function About() {
         ]}
       />
       <p>
-        <b>W</b> and <b>O</b> aren't in the target word at all.
+        <b>W</b> et <b>O</b> ne figurent pas dans le mot recherché.
       </p>
       <p>
-        <b className={"green-bg"}>R</b> is correct! The third letter is{" "}
+        <b className={"green-bg"}>R</b> est correct ! La troisième lettre est{" "}
         <b className={"green-bg"}>R</b>
         .<br />
-        <strong>(There may still be a second R in the word.)</strong>
+        <strong>(Il peut cependant y avoir un autre R dans le mot.)</strong>
       </p>
       <p>
-        <b className={"yellow-bg"}>D</b> occurs <em>elsewhere</em> in the target
-        word.
+        <b className={"yellow-bg"}>D</b> apparaît <em>ailleurs</em> dans le mot recherché.
         <br />
-        <strong>(Perhaps more than once. 🤔)</strong>
+        <strong>(Peut-être plus d'une fois. 🤔)</strong>
       </p>
       <hr />
       <p>
-        Let's move the <b>D</b> in our next guess:
+        Déplaçons le <b>D</b> dans notre proposition suivante :
       </p>
       <Row
         rowState={RowState.LockedIn}
@@ -57,7 +55,7 @@ export function About() {
           { clue: Clue.Correct, letter: "r" },
           { clue: Clue.Absent, letter: "k" },
         ]}
-        annotation={"So close!"}
+        annotation={"Pas loin !"}
       />
       <Row
         rowState={RowState.LockedIn}
@@ -68,19 +66,8 @@ export function About() {
           { clue: Clue.Correct, letter: "r" },
           { clue: Clue.Correct, letter: "t" },
         ]}
-        annotation={"Got it!"}
+        annotation={"Trouvé !"}
       />
-      <p>
-        Report issues{" "}
-        <a href="https://github.com/lynn/hello-wordl/issues">here</a>, or tweet{" "}
-        <a href="https://twitter.com/chordbug">@chordbug</a>.
-      </p>
-      <p>
-        This game will be free and ad-free forever,
-        <br />
-        but you can <a href="https://ko-fi.com/chordbug">buy me a coffee</a> if
-        you'd like.
-      </p>
     </div>
   );
 }
