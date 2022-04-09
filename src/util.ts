@@ -24,7 +24,13 @@ export function urlParam(name: string): string | null {
   return new URLSearchParams(window.location.search).get(name);
 }
 
-export const seed = Number(urlParam("seed"));
+//export const seed = Number(urlParam("seed"));
+const now = new Date();
+export const seed = Number(
+  now.toLocaleDateString("en-US", { year: "numeric" }) +
+  now.toLocaleDateString("en-US", { month: "2-digit" }) +
+  now.toLocaleDateString("en-US", { day: "2-digit" })
+);
 //const makeRandom = () => (seed ? mulberry32(seed) : () => Math.random());
 const makeRandom = () => mulberry32(seed);
 let random = makeRandom();
