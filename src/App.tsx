@@ -74,13 +74,13 @@ function App() {
       <h1>
         <span
           style={{
-            color: difficulty > 0 ? "#e66" : "inherit",
-            fontStyle: difficulty > 1 ? "italic" : "inherit",
+            color: "#e66",
+            fontStyle: "italic",
           }}
         >
-          hell
+          Koreu
         </span>
-        o wordl
+        dle
       </h1>
       <div className="top-right">
         {page !== "game" ? (
