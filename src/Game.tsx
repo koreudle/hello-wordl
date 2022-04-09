@@ -38,11 +38,19 @@ const maxLength = 11;
 const limitLength = (n: number) =>
   n >= minLength && n <= maxLength ? n : defaultLength;
 
-function randomTarget(wordLength: number): string {
-  const eligible = targets.filter((word) => word.length === wordLength);
+//function randomTarget(wordLength: number): string {
+//  const eligible = targets.filter((word) => word.length === wordLength);
+//  let candidate: string;
+//  do {
+//    candidate = pick(eligible);
+//  } while (/\*/.test(candidate));
+//  return candidate;
+//}
+
+function randomTarget(): string {
   let candidate: string;
   do {
-    candidate = pick(eligible);
+    candidate = pick(targets);
   } while (/\*/.test(candidate));
   return candidate;
 }
@@ -87,16 +95,18 @@ function Game(props: GameProps) {
   const [guesses, setGuesses] = useState<string[]>([]);
   const [currentGuess, setCurrentGuess] = useState<string>("");
   const [challenge, setChallenge] = useState<string>(initChallenge);
-  const [wordLength, setWordLength] = useState(
-    challenge ? challenge.length : parseUrlLength()
-  );
+  //const [wordLength, setWordLength] = useState(
+  //  challenge ? challenge.length : parseUrlLength()
+  //);
   const [gameNumber, setGameNumber] = useState(parseUrlGameNumber());
   const [target, setTarget] = useState(() => {
     resetRng();
     // Skip RNG ahead to the parsed initial game number:
-    for (let i = 1; i < gameNumber; i++) randomTarget(wordLength);
-    return challenge || randomTarget(wordLength);
+    //for (let i = 1; i < gameNumber; i++) randomTarget(wordLength);
+    //return challenge || randomTarget(wordLength);
+    return challenge || randomTarget();
   });
+  const [wordLength, setWordLength] = useState(target.length);
   const [hint, setHint] = useState<string>(
     challengeError
       ? `Invalid challenge string, playing random game.`
@@ -122,7 +132,7 @@ function Game(props: GameProps) {
     setChallenge("");
     const newWordLength = limitLength(wordLength);
     setWordLength(newWordLength);
-    setTarget(randomTarget(newWordLength));
+    setTarget(randomTarget());
     setHint("");
     setGuesses([]);
     setCurrentGuess("");
@@ -279,7 +289,7 @@ function Game(props: GameProps) {
             setGameState(GameState.Playing);
             setGuesses([]);
             setCurrentGuess("");
-            setTarget(randomTarget(length));
+            setTarget(randomTarget());
             setWordLength(length);
             setHint(`${length} letters`);
           }}
