@@ -24,7 +24,6 @@ enum GameState {
 }
 
 interface GameProps {
-  maxGuesses: number;
   hidden: boolean;
   difficulty: Difficulty;
   colorBlind: boolean;
@@ -107,6 +106,7 @@ function Game(props: GameProps) {
     return challenge || randomTarget();
   });
   const [wordLength, setWordLength] = useState(target.length);
+  const maxGuesses = target.length + 1;
   const [hint, setHint] = useState<string>(
     challengeError
       ? `Invalid challenge string, playing random game.`
@@ -173,7 +173,7 @@ function Game(props: GameProps) {
       }
       return;
     }
-    if (guesses.length === props.maxGuesses) return;
+    if (guesses.length === maxGuesses) return;
     if (/^[a-z]$/i.test(key)) {
       setCurrentGuess((guess) =>
         (guess + key.toLowerCase()).slice(0, wordLength)
@@ -209,7 +209,7 @@ function Game(props: GameProps) {
       if (currentGuess === target) {
         setHint(gameOver("gagné"));
         setGameState(GameState.Won);
-      } else if (guesses.length + 1 === props.maxGuesses) {
+      } else if (guesses.length + 1 === maxGuesses) {
         setHint(gameOver("perdu"));
         setGameState(GameState.Lost);
       } else {
@@ -235,7 +235,7 @@ function Game(props: GameProps) {
   }, [currentGuess, gameState]);
 
   let letterInfo = new Map<string, Clue>();
-  const tableRows = Array(props.maxGuesses)
+  const tableRows = Array(maxGuesses)
     .fill(undefined)
     .map((_, i) => {
       const guess = [...guesses, currentGuess][i] ?? "";

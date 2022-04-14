@@ -148,7 +148,6 @@ function App() {
         </div>
       )}
       <Game
-        maxGuesses={maxGuesses}
         hidden={page !== "game"}
         difficulty={difficulty}
         colorBlind={colorBlind}
